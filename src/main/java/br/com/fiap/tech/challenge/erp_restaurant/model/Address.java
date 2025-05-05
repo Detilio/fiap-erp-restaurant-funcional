@@ -9,18 +9,7 @@ public class Address {
     private String state;
     private String zipCode;
 
-    public Address(Long id, String street, String number, String district, String city, String state, String zioCode) {
-        this.id = id;
-        this.street = street;
-        this.number = number;
-        this.district = district;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zioCode;
-    }
-
-    public Address() {
-    }
+    public Address() {}
 
     public String getStreet() {
         return street;

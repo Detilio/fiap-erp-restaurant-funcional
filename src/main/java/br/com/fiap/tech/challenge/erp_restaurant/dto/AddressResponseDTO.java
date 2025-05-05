@@ -25,8 +25,7 @@ public class AddressResponseDTO {
     @Pattern(regexp = "\\d{5}-\\d{3}", message = "Formato de CEP inválido (ex: 00000-000)")
     private String zipCode;
 
-    public AddressResponseDTO() {
-    }
+    public AddressResponseDTO() {}
 
     public AddressResponseDTO(Long id, String street, String number, String district, String city, String state, String zipCode, Long userId) {
         this.id = id;

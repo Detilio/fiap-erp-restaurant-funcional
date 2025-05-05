@@ -64,6 +64,17 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    // Lista usuário específico
+    public List<UserResponseDTO> listUser(Long id, String token) {
+        if (!validarToken(token)) {
+            throw new IllegalArgumentException("Token inválido!");
+        }
+
+        return userRepository.findById(id).stream()
+                .map(UserMapper::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+
     // Atualiza um usuário
     public UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO, String token) {
         if (!validarToken(token)) {

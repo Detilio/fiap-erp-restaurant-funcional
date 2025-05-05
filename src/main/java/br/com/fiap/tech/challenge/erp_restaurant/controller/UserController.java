@@ -53,6 +53,22 @@ public class UserController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listUser(@PathVariable Long id, @RequestHeader("Authorization") String token) {
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token de autorização ausente ou inválido.");
+        }
+        String actualToken = token.substring(7); // Remove "Bearer " do token
+        try {
+            List<UserResponseDTO> users = userService.listUser(id, actualToken);
+            return ResponseEntity.ok(users);
+        } catch (IllegalArgumentException e) {
+            Map<String, String> resposta = new HashMap<>();
+            resposta.put("mensagem", e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(resposta); // 403 Forbidden para acesso não autorizado
+        }
+    }
+
     @PostMapping
     public ResponseEntity<UserResponseDTO> registerUser(@Valid @RequestBody UserRequestDTO userRequestDTO) {
         UserResponseDTO registeredUser = userService.registerUser(userRequestDTO);

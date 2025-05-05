@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByLoginIgnoreCase(String login);
 
     Optional<UserEntity> findByLoginAndPasswordIgnoreCase(@Param("login") String login, @Param("password") String password);
+
+    Optional<UserEntity> findById(Long id);
 }
