@@ -1,0 +1,3 @@
+MYSQL_USER=user_erp_restaurant
+MYSQL_PASSWORD=466238
+MYSQL_HOST=host.docker.internal
